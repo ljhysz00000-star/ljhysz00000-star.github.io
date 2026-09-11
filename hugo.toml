@@ -1,0 +1,15 @@
+baseURL = 'https://ljhysz00000-star.github.io/'
+languageCode = 'zh-cn'
+defaultContentLanguage = 'zh-cn'
+title = '我的博客'
+theme = 'FixIt'
+
+# FixIt 主题要求的必要配置：继承主题的 markup / outputs / taxonomies
+[markup]
+  _merge = "shallow"
+
+[outputs]
+  _merge = "shallow"
+
+[taxonomies]
+  _merge = "shallow"

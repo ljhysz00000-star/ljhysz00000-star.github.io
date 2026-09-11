@@ -1,0 +1,14 @@
+# Hugo 构建产物
+public/
+resources/_gen/
+.hugo_build.lock
+
+# 主题（由 CI/本地脚本下载，不入库）
+themes/FixIt/
+
+# 归档的旧站点（本地留存，不入库）
+_old_static/
+
+# 系统
+.DS_Store
+Thumbs.db
