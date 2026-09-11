@@ -1,13 +1,26 @@
 # Hugo 构建产物
 public/
-resources/_gen/
+resources/
 .hugo_build.lock
 
-# 主题（由 CI/本地脚本下载，不入库）
-themes/FixIt/
+# 主题：CI 会按 hugo.toml 里的 theme 字段自动下载；
+# 本地由 switch-theme.cjs 从 _themes-archive/ 释放，所以不进仓库
+themes/
 
-# 归档的旧站点（本地留存，不入库）
+# 主题本地归档（体积较大，不入库）
+_themes-archive/
+
+# 归档的旧站点（本地留存）
 _old_static/
+
+# 部署令牌（绝对不要提交）
+.ghtoken
+.env
+
+# 依赖与编辑器
+node_modules/
+.vscode/
+.idea/
 
 # 系统
 .DS_Store

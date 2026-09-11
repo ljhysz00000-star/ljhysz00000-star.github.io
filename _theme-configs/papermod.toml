@@ -1,0 +1,132 @@
+# =====================================================================
+# 我的博客 - 站点配置（PaperMod 主题 · 全功能版）
+# 切换方式：把本文件内容覆盖到站点根目录的 hugo.toml
+# 主题版本：adityatelange/hugo-PaperMod v8.0
+# 注意：PaperMod 在新版 Hugo 上需要打一个兼容补丁（见 _theme-scripts/patch-papermod.cjs）
+# =====================================================================
+
+baseURL = 'https://ljhysz00000-star.github.io/'
+languageCode = 'zh-cn'
+defaultContentLanguage = 'zh'
+title = '我的博客'
+theme = 'PaperMod'
+
+enableRobotsTXT = true
+hasCJKLanguage = true
+summaryLength = 120
+enableEmoji = true
+paginate = 8
+
+[params]
+env = 'production'
+description = '记录、整理、分享'
+author = '培烁'
+defaultTheme = 'auto'          # 自动跟随系统明暗
+
+# --- 首页信息 ---
+homeInfoParams = { Title = '你好，我是培烁', Content = '这里记录一些想法、笔记和折腾过的东西。' }
+
+# --- 文章页显示项（能开的全开）---
+ShowReadingTime = true          # 阅读时长
+ShowWordCount = true            # 字数
+ShowShareButtons = true         # 分享按钮
+ShareButtons = ['weibo', 'x', 'telegram', 'linkedin', 'reddit', 'whatsapp', 'facebook']
+ShowPostNavLinks = true         # 上下篇导航
+ShowBreadCrumbs = true          # 面包屑
+ShowCodeCopyButtons = true      # 代码复制按钮
+ShowToc = true                  # 目录
+TocOpen = false                 # 目录默认折叠
+ShowLastMod = true              # 最后修改时间
+ShowRssButtonInSectionTermList = true
+ShowFullTextinRSS = true
+ShowAllPagesInArchive = true    # 归档页显示全部
+ShowPageNums = true             # 分页页码
+disableAnchoredHeadings = false # 标题锚点
+disableSpecial1stPost = false   # 首页第一篇不做特殊处理
+hideFooter = false
+mainSections = ['posts']
+DateFormat = '2006-01-02'
+
+# --- 页脚 ---
+[params.footer]
+hideCopyright = false
+hidePoweredBy = false
+
+# --- 静态资源 / 图标 ---
+[params.assets]
+favicon = '/favicon.ico'
+favicon16x16 = '/favicon-16x16.png'
+favicon32x32 = '/favicon-32x32.png'
+apple_touch_icon = '/apple-touch-icon.png'
+disableFingerprinting = false
+
+# --- 社交图标 ---
+[[params.socialIcons]]
+name = 'github'
+url = 'https://github.com/ljhysz00000-star'
+
+[[params.socialIcons]]
+name = 'rss'
+url = 'index.xml'
+
+# --- 文章底部「编辑此页」---
+[params.editPost]
+URL = 'https://github.com/ljhysz00000-star/ljhysz00000-star.github.io/edit/main/content'
+Text = '编辑此页'
+appendFilePath = true
+
+# --- 站内搜索（PaperMod 自带 fuse.js）---
+[params.fuseOpts]
+isCaseSensitive = false
+threshold = 0.4
+location = 0
+distance = 100
+maxPatternLength = 32
+minMatchCharLength = 1
+keys = ['title', 'permalink', 'summary', 'content']
+
+# --- 封面图 ---
+[params.cover]
+hidden = false
+hiddenInList = false
+hiddenInSingle = false
+
+# --- 评论 / 统计（需要外部账号，默认关闭）---
+[params.analytics]
+google = { ID = '' }
+
+[markup]
+  [markup.highlight]
+    noClasses = false
+    lineNos = true
+    lineNumbersInTable = false
+    guessSyntax = true
+  [markup.goldmark.renderer]
+    unsafe = true
+
+[menu]
+  [[menu.main]]
+    name = '文章'
+    url = '/posts/'
+    weight = 10
+  [[menu.main]]
+    name = '归档'
+    url = '/archives/'
+    weight = 20
+  [[menu.main]]
+    name = '标签'
+    url = '/tags/'
+    weight = 30
+  [[menu.main]]
+    name = '搜索'
+    url = '/search/'
+    weight = 40
+  [[menu.main]]
+    name = '关于'
+    url = '/about/'
+    weight = 50
+
+[outputs]
+home = ['HTML', 'RSS', 'JSON']
+section = ['HTML', 'RSS']
+term = ['HTML', 'RSS']

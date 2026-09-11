@@ -1,0 +1,151 @@
+# =====================================================================
+# 我的博客 - 站点配置（Stack 主题 · 全功能版）
+# 切换方式：把本文件内容覆盖到站点根目录的 hugo.toml
+# 主题版本：CaiJimmy/hugo-theme-stack v4.0.3（要求 Hugo >= 0.157.0）
+# 注意：切换到本主题需要 content/archives.md 与 content/search.md（切换脚本会自动处理）
+# =====================================================================
+
+baseURL = 'https://ljhysz00000-star.github.io/'
+languageCode = 'zh-cn'
+defaultContentLanguage = 'zh'
+title = '我的博客'
+theme = 'hugo-theme-stack'
+
+hasCJKLanguage = true
+summaryLength = 120
+paginate = 8
+enableEmoji = true
+enableRobotsTXT = true
+
+[params]
+mainSections = ['posts']
+rssFullContent = true
+SortBy = 'default'
+
+# --- 页脚 ---
+[params.footer]
+since = 2026
+customText = ''
+
+# --- 日期格式 ---
+[params.dateFormat]
+published = ':date_full'
+lastUpdated = ':date_full'
+
+# --- 左侧边栏 ---
+[params.sidebar]
+compact = false
+emoji = '🍥'
+subtitle = '记录、整理、分享'
+avatar = ''
+
+# --- 文章页（能开的全开）---
+[params.article]
+headingAnchor = true      # 标题锚点链接
+math = true               # 数学公式（KaTeX）
+toc = true                # 目录
+readingTime = true        # 阅读时长
+
+[params.article.list]
+showTags = true           # 列表页显示标签
+
+[params.article.license]
+enabled = true
+default = '本文采用 CC BY-NC-SA 4.0 许可协议'
+
+[params.article.mermaid]
+look = 'handDrawn'
+lightTheme = 'default'
+darkTheme = 'dark'
+securityLevel = 'loose'
+htmlLabels = true
+transparentBackground = false
+
+# --- 侧栏挂件 ---
+[params.widgets]
+homepage = [
+  { type = 'search' },
+  { type = 'archives', params = { limit = 8 } },
+  { type = 'categories', params = { limit = 10 } },
+  { type = 'tag-cloud', params = { limit = 20 } },
+]
+page = [
+  { type = 'toc' },
+  { type = 'categories', params = { limit = 10 } },
+]
+
+# --- 社交分享卡片 ---
+[params.opengraph.twitter]
+site = ''
+card = 'summary_large_image'
+
+# --- 明暗主题 ---
+[params.colorScheme]
+toggle = true
+default = 'auto'
+
+# --- 图片处理 ---
+[params.imageProcessing]
+autoOrient = true
+
+[params.imageProcessing.content]
+widths = [800, 1600, 2400]
+enabled = true
+
+[params.imageProcessing.thumbnail]
+enabled = true
+
+# --- Cookie 同意 ---
+[params.cookies]
+enabled = true
+showSettings = true
+
+# --- 评论（需要外部服务授权，默认关闭）---
+[params.comments]
+enabled = false
+provider = 'giscus'
+
+[menu]
+  [[menu.main]]
+    identifier = 'home'
+    name = '首页'
+    url = '/'
+    weight = 1
+
+  [[menu.main]]
+    identifier = 'archives'
+    name = '归档'
+    url = '/archives/'
+    weight = 2
+
+  [[menu.main]]
+    identifier = 'search'
+    name = '搜索'
+    url = '/search/'
+    weight = 3
+
+  [[menu.main]]
+    identifier = 'about'
+    name = '关于'
+    url = '/about/'
+    weight = 4
+
+  [[menu.social]]
+    identifier = 'github'
+    name = 'GitHub'
+    url = 'https://github.com/ljhysz00000-star'
+    weight = 1
+
+[markup]
+  [markup.highlight]
+    noClasses = false
+    lineNos = true
+    lineNumbersInTable = false
+    guessSyntax = true
+  [markup.goldmark.renderer]
+    unsafe = true
+
+[outputs]
+home = ['HTML', 'RSS']
+section = ['HTML', 'RSS']
+term = ['HTML', 'RSS']
