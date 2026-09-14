@@ -68,6 +68,25 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
 
+      # Enveloppe（Obsidian 发布插件）产出的 Markdown 需要为 Hugo 做两处规范化。
+      #   1) 剥掉 frontmatter 里的 share 键：它和 FixIt 主题的 [params.page.share] 重名，
+      #      页面级布尔值会覆盖主题期望的配置对象，模板随即报
+      #      "can't evaluate field enable in type bool" 并中断整个构建。
+      #   2) 图片链接 ../../static/images/x 或 /static/images/x 统一改成 /images/x：
+      #      Hugo 把 static/ 目录直接映射到站点根，凡是带 static/ 前缀的链接必然 404。
+      - name: Normalize Enveloppe markdown
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          n=0
+          for f in content/posts/*.md; do
+            awk 'BEGIN{fm=0} /^---[[:space:]]*$/{fm++;print;next} fm==1 && /^share([[:space:]]*:)/{next} {print}' "$f" > "$f.tmp"
+            sed -E 's#\]\(([.]{2}/)*static/images/#](/images/#g; s#\]\(([.]{2}/)*images/#](/images/#g' "$f.tmp" > "$f"
+            rm -f "$f.tmp"
+            n=$((n+1))
+          done
+          echo "normalized $n file(s)"
+
       - name: Build with Hugo
         env:
           HUGO_ENVIRONMENT: production
