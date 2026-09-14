@@ -2,12 +2,8 @@
 title: 敬一丹：感谢这世界，让我走过
 date: 2026-09-14T19:20:00+08:00
 draft: false
-tags:
-  - 人物
-  - 敬一丹
-  - 纪念
-categories:
-  - 人物
+tags: ["人物", "敬一丹", "纪念"]
+categories: ["人物"]
 share: true
 ---
 
@@ -21,7 +17,7 @@ share: true
 
 从夏至到白露，将近三个月。很多人一直在等她回来。
 
-![01-microphone-desk.jpg](../../static/images/01-microphone-desk.jpg)
+![[01-microphone.jpg]]
 
 ## 从哈尔滨到央视，她走了四十年
 
@@ -49,7 +45,7 @@ share: true
 
 她自己记得最深的，是那些"在角落里的人"——不受万人瞩目，默默在一段属于自己的时间简史里遨游，"让人敬佩却又无比怜惜"。
 
-![02-books-window.jpg](../../static/images/02-books-window.jpg)
+![[02-old-books.jpg]]
 
 ## 退休，不是退场
 
@@ -83,7 +79,7 @@ share: true
 
 今年 8 月 6 日，她的公众号推送了《敬一丹｜走过·立秋》，文末留下一行字：
 
-![03-autumn-river.jpg](../../static/images/03-autumn-river.jpg)
+![[03-river-mist.jpg]]
 
 > 感谢这世界，让我走过。
 
