@@ -68,12 +68,17 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
 
-      # Enveloppe（Obsidian 发布插件）产出的 Markdown 需要为 Hugo 做两处规范化。
+      # 文章 Markdown 需要为 Hugo 做三处规范化。前两条是 Enveloppe（Obsidian 发布插件）
+      # 刻意为之的行为，第三条是它的"漏网之鱼"：
       #   1) 剥掉 frontmatter 里的 share 键：它和 FixIt 主题的 [params.page.share] 重名，
       #      页面级布尔值会覆盖主题期望的配置对象，模板随即报
       #      "can't evaluate field enable in type bool" 并中断整个构建。
       #   2) 图片链接 ../../static/images/x 或 /static/images/x 统一改成 /images/x：
       #      Hugo 把 static/ 目录直接映射到站点根，凡是带 static/ 前缀的链接必然 404。
+      #   3) Obsidian 的 wiki 嵌入 ![[x.jpg]] 转成标准 Markdown ![](/images/x.jpg)。
+      #      经 Enveloppe 上传时它会自动转换；但任何绕过插件直接写进仓库的 .md
+      #      （例如用 GitHub API 手改、或直接编辑仓库文件）不会被转换，
+      #      而 Hugo 不认 wiki 语法，会把整行当纯文本渲染出来。
       - name: Normalize Enveloppe markdown
         run: |
           set -euo pipefail
@@ -81,6 +86,7 @@ jobs:
           n=0
           for f in content/posts/*.md; do
             awk 'BEGIN{fm=0} /^---[[:space:]]*$/{fm++;print;next} fm==1 && /^share([[:space:]]*:)/{next} {print}' "$f" > "$f.tmp"
+            sed -E -i 's#!\[\[([^]]+\.(jpg|jpeg|png|gif|webp|svg|avif))\]\]#![]\(/images/\1\)#gi' "$f.tmp"
             sed -E 's#\]\(([.]{2}/)*static/images/#](/images/#g; s#\]\(([.]{2}/)*images/#](/images/#g' "$f.tmp" > "$f"
             rm -f "$f.tmp"
             n=$((n+1))
